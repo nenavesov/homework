@@ -1,0 +1,5 @@
+﻿  matrix.c
+D:\c+\matrix\matrix\matrix.c(20,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\c+\matrix\matrix\matrix.c(54,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\c+\matrix\matrix\matrix.c(55,22): warning C4018: <: несоответствие типов со знаком и без знака
+  matrix.vcxproj -> D:\c+\matrix\x64\Debug\matrix.exe
