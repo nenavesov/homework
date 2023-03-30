@@ -1,0 +1,117 @@
+#include <ncurses.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/time.h>
+
+#define w 30
+#define h 20
+
+#define life 1
+#define Dead 0
+
+#define KolvoLife 50;
+
+typedef int tablT[h][w];
+
+void printTabl(tablT table){
+	for(int i = 0; i < h; i++){
+		for(int j = 0; j < w; j++){
+			if(table[i][j] == life){
+				printw("*");
+			}
+			else{
+				printw(" ");
+			}
+		}
+		printw("\n");
+	}
+	printw("\n");
+}
+
+void clearTable(tablT table){
+	for(int i = 0; i < h; i++){
+		for(int j = 0; j < w; j++){
+			table[i][j] = Dead;
+		}
+	}
+}
+
+int getNeighborV(tablT table, int row, int col){
+	if(row < 0 || row >= h || col < 0 || col >= w || table[row][col] != life){
+		return 0;
+	}
+	else{
+		return 1;
+	}
+}
+
+int getNeghtborC(tablT table, int row, int col){
+	int neighbor = 0;
+	neighbor += getNeighborV(table, row - 1, col - 1);
+	neighbor += getNeighborV(table, row - 1, col);
+	neighbor += getNeighborV(table, row - 1, col + 1);
+	neighbor += getNeighborV(table, row, col - 1);
+	neighbor += getNeighborV(table, row, col + 1);
+	neighbor += getNeighborV(table, row + 1, col - 1);
+	neighbor += getNeighborV(table, row + 1, col);
+	neighbor += getNeighborV(table, row + 1, col + 1);
+	
+	return neighbor;
+}
+
+void calcul(tablT table1){
+	tablT table2;
+	int neighbor, height, width;
+	for(height = 0; height < h; height++){
+		for(width = 0; width < w; width++){
+			neighbor = getNeghtborC(table1, height, width);
+			if(neighbor == 3){
+				table2[height][width] = life;
+			}
+			else if(neighbor == 2 && table1[height][width] == life){
+				table2[height][width] = life;
+			}
+			else{
+				table2[height][width] = Dead;
+			}
+		}
+	}
+	for(height = 0; height < h; height++){
+		for(width = 0; width < w; width++){
+			table1[height][width] = table2[height][width];
+		}
+	}
+}
+				
+
+
+
+
+
+void loaddata(tablT table){
+	for(int i = 0; i < h; i++){
+		for( int j = 0; j < w; j++){
+			table[i][j] = rand()%2;
+		}
+	}
+}
+
+
+
+int main(int argc, char * argv[]){
+	initscr();
+	tablT table;
+	int generation = 0;
+  	clearTable(table);
+  	loaddata(table);
+  	printTabl(table);
+  	for(generation=0;generation<100000;generation++){
+  		calcul(table);
+    	printTabl(table);
+    	refresh();
+		getch();
+		clear();
+		endwin();
+	}
+  	return 0;
+}
