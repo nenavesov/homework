@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "function.h"
+
+
+int* findPodstr(char* str, char* podstr) {
+int count = 0, check = 0;
+for (int i = 0; i < strlen(str); i++) {
+count = 0;
+for (int j = 0; j < strlen(podstr); j++) {
+if (str[i + j] == podstr[j]) {
+count += 1;
+}
+}
+if (count == strlen(podstr)) {
+int* b = &str[i];
+check = i;
+return b;
+}
+}
+return NULL;
+}
+
+int countPodstr(char* cstr, char* cpodstr) {
+int countAll = 0, countTmp = 0;
+for (int i = 0; i < strlen(cstr); i++) {
+countTmp = 0;
+for (int j = 0; j < strlen(cpodstr); j++) {
+if (cstr[i + j] == cpodstr[j]) {
+countTmp += 1;
+}
+}
+if (countTmp == strlen(cpodstr)) {
+countAll += 1;
+}
+}
+return countAll;
+}
+function.c
+main.c
+#include <stdio.h>
+#include <stdlib.h>
+#include "function.h"
+
+int main(int argc, char* argv[]) {
+char* podStr = argv[1];
+char** String = (char**)malloc(sizeof(char*) * (argc - 2));
+for (int i = 0; i < argc - 2; i++) {
+String[i] = argv[i + 2];
+}
+for (int i = 0; i < argc - 2; i++) {
+int* tmp = findPodstr(String[i], podStr);
+if (tmp == NULL) {
+}
+else {
+int b = countPodstr(String[i], podStr);
+printf("%p, %s, %d\n", tmp, String[i], b);
+}
+}
+return 0;
+}
+function.h
+int* findPodstr(char* str, char* podstr);
+int countPodstr(char* cstr, char* cpodstr);
+
+
+
+
