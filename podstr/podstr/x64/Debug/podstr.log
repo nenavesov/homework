@@ -1,0 +1,5 @@
+﻿  function.c
+D:\c+\podstr\podstr\function.c(17,1): warning C4133: инициализация: несовместимые типы - из "char *" в "int *"
+  main.c
+  Создание кода...
+  podstr.vcxproj -> D:\c+\podstr\x64\Debug\podstr.exe

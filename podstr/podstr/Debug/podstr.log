@@ -1,0 +1,9 @@
+﻿  function.c
+D:\c+\podstr\podstr\function.c(9,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\c+\podstr\podstr\function.c(11,21): warning C4018: <: несоответствие типов со знаком и без знака
+D:\c+\podstr\podstr\function.c(17,1): warning C4133: инициализация: несовместимые типы - из "char *" в "int *"
+D:\c+\podstr\podstr\function.c(27,20): warning C4018: <: несоответствие типов со знаком и без знака
+D:\c+\podstr\podstr\function.c(29,21): warning C4018: <: несоответствие типов со знаком и без знака
+  main.c
+  Создание кода...
+  podstr.vcxproj -> D:\c+\podstr\Debug\podstr.exe
