@@ -1,0 +1,12 @@
+﻿  main.c
+D:\c+\dzPole\dzPole\main.c(40,14): warning C4047: функция: "int" отличается по уровням косвенного обращения от "people *"
+D:\c+\dzPole\dzPole\main.c(40,11): warning C4024: g: различные типы для формального и фактического параметров 1
+D:\c+\dzPole\dzPole\main.c(40,24): warning C4047: функция: "int" отличается по уровням косвенного обращения от "people *"
+D:\c+\dzPole\dzPole\main.c(40,17): warning C4024: g: различные типы для формального и фактического параметров 2
+D:\c+\dzPole\dzPole\main.c(41,19): warning C4047: =: "people **" отличается по уровням косвенного обращения от "people *"
+D:\c+\dzPole\dzPole\main.c(43,15): warning C4047: =: "people *" отличается по уровням косвенного обращения от "people **"
+D:\c+\dzPole\dzPole\main.c(82,18): warning C4113: "int (__cdecl *)(people *,people *)" отличается в списках параметров от "sortP"
+D:\c+\dzPole\dzPole\main.c(85,17): warning C4113: "int (__cdecl *)(people *,people *)" отличается в списках параметров от "sortP"
+D:\c+\dzPole\dzPole\main.c(88,20): warning C4113: "int (__cdecl *)(people *,people *)" отличается в списках параметров от "sortP"
+D:\c+\dzPole\dzPole\main.c(47): warning C4716: SortAll: должна возвращать значение
+  dzPole.vcxproj -> D:\c+\dzPole\Debug\dzPole.exe
