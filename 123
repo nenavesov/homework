@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include<raylib.h>
+
+void drawTr(int x1,int x2,int y1,int y2){
+    int deltaX = abs(x2-x1);//ПРОЕКЦИЯ НА ОСИ Х
+    int deltaY = abs(y2-y1);// ПРОЕКЦИЯ НА ОСИ Y
+    int signX = x1 < x2 ? 1 : -1;// ЭТИ ДВЕ СТРОКИ МЫ СМОТРИМ ДЛЯ ОПРЕДЕЛНИЯ КУДА БУДЕМ СДВИГАТЬСЯ
+    // ЕСЛИ + ТО НАПРАВА И НАОБОРОТ, ИДЕТ КАК СРАВНЕНИЕ У НАС(СТРОКА 9 И 11)
+    int signY = y1 < y2 ? 1 : -1;
+    
+    int error = deltaX - deltaY;// РАСТОЯНИЕ МЕЖДУ ТОЧКАМИ, СКОЛЬКО  НУЖНО ДЛЯ РИСОВАНИЕ ДАЛЬШЕ
+    DrawPixel(x2,y2,BLACK);// РИСУЕМ ПЕРВУЮ ТОЧКУ И СТАВИМ ЕЕ ЗДЕСЬ, ПОТОМУ ЧТО ВОЗМОЖНО БУДЕМ СДВИГАТЬ ТОЧКИ ДЛЯ ОТРЕЗКА 
+    while(x1 != x2 || y1 != y2){// ПОКА НЕ ДОШЛИ ДО ДРУГОЙ ТОЧКИ
+        DrawPixel(x1, y1, BLACK);// РИСУЕМ КАЖДЫЙ РАЗ НОВЫЙ ПИКСЕЛЬ ДО ТОЧКИ
+        int error2 = error * 2;// ТУТ СЛОЖНО, НО В КРАТКО, СМОТРИТ КУДА РИСОВАТЬ НАШИ ПИКСЕЛИ, КУДА НАКЛОНЯТЬСЯ, ВПРАВУЮ СТОРОНУ ИЛИ ВЛЕВУЮ(НА РИСУНКЕ ПОКАЖУ)
+        if(error2 > -deltaY){
+            error -= deltaY;
+            x1 += signX;
+        }
+        if(error2 < deltaX){
+            error += deltaX;
+            y1 += signY;
+        }
+    }
+}
+ 
+int main(){
+    InitWindow(1000, 1000, "raylib");// СОЗДАНИЕ ОКНА
+    int x0 = 100, x1 = 700, x2 = 200, y0 = 700, y1 = 660, y2 = 900;// КООРДИНАТЫ ТОЧЕК
+    
+    while(!WindowShouldClose()){// ПОКА ОКНО НЕ ЗАКРЫТО 
+        BeginDrawing();// НАЧИНАЕМ РИСОВАТЬ НАШ ТРЕУГОЛЬНИК
+        ClearBackground(WHITE);// ДЕЛАЕМ ЭКРАН БЕЛЫМ
+        drawTr(x1,x2,y1,y2);// РИСУЕМ ПЕРВЫЙ ОТРЕЗОК И Т.Д
+        drawTr(x1,x0,y1,y0);
+        drawTr(x2,x0,y2,y0);
+        EndDrawing();// ЗАКАНЧИВАЕМ РИСОВАТЬ 
+    }
+ 
+return 0;
+}
